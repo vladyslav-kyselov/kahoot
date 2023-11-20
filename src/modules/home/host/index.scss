@@ -1,0 +1,33 @@
+.home-host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .home-host__title {
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .home-host__password, .home-host__login, .home-host__log-in {
+    width: 90%;
+    margin: 15px;
+    max-width: 350px;
+  }
+
+  .home-host__log-in {
+    margin: 0;
+    margin-bottom: 10px;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .home-host__return-link {
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+}

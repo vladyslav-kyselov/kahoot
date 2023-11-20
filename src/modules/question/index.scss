@@ -1,0 +1,23 @@
+.question {
+  max-width: 32%;
+  margin: 10px;
+  box-sizing: border-box;
+  flex: 0 0 30%;
+  flex-grow: 1;
+
+  @media (max-width: 768px) {
+   max-width: 100%;
+  }
+
+  .question__input {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .question__action-button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+}

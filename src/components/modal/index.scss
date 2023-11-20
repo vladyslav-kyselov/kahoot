@@ -1,0 +1,15 @@
+.modal {
+
+  .modal__input {
+    width: 300px;
+    margin: 20px;
+    @media (max-width: 768px) {
+      width: 250px;
+    }
+  }
+
+  .modal__save, .modal__cancel {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+}

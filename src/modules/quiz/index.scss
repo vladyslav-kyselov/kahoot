@@ -1,0 +1,21 @@
+.quizzes {
+  .quizzes__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+
+  .quizzes__create-new {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 10px 10px;
+
+    @media (max-width: 768px) {
+      flex-direction: column-reverse;
+      margin: 10px 10px 0;
+      Button:first-child {
+        margin-top: 10px;
+      }
+    }
+  }
+}

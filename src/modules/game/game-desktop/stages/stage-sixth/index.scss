@@ -1,0 +1,46 @@
+.stage-sixth {
+  .stage-sixth__next-stage {
+    position: absolute;
+    top: 40px;
+    right: 30px;
+    font-size: 40px;
+    font-family: 'Gluten', cursive;
+    color: black;
+    border-color: black;
+
+    &:hover {
+      background-color: black;
+      color: white;
+      border-color: white;
+    }
+  }
+
+  .stage-sixth__action-bitton {
+    height: 10vh;
+  }
+
+  .stage-sixth__score {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 79vh;
+  }
+
+  .stage-sixth__score-result {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 12px;
+    padding-right: 30px;
+    padding-left: 30px;
+    width: 40%;
+    font-size: 35px;
+  }
+
+  .name {
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

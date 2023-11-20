@@ -1,0 +1,12 @@
+@import '/src/styles/variable.scss';
+
+.mobile-wrapper-game {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  overflow: hidden;
+
+  &:active {
+    overflow: scroll;
+  }
+}

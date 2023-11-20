@@ -1,0 +1,27 @@
+.home {
+  .home__inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+
+  .home__input {
+    max-width: 350px;
+    width: 90%;
+    margin-bottom: 15px;
+  };
+
+  .home__join-room {
+    max-width: 350px;
+    width: 90%;
+  }
+
+  &__host-join {
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+}

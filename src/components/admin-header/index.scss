@@ -1,0 +1,26 @@
+.header {
+  &__link {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+
+    @media (max-width: 768px) {
+      color: black;
+      display: flex;justify-content: center;
+    }
+  }
+
+  &__disabled {
+    color: lightgray;
+    opacity: 0.4
+  }
+
+
+  .header__title {
+    font-family: 'Gluten', cursive;
+  }
+
+  .disabled {
+    color: gray !important;
+  }
+}

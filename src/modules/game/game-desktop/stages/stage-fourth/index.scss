@@ -1,0 +1,128 @@
+@import "src/styles/_variable.scss";
+
+.stage-fourth {
+  background: white;
+  display: flex;
+  height: 100vh;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+
+  .stage-fourth__next-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 40px;
+    font-family: 'Gluten', cursive;
+    color: black;
+    border-color: black;
+
+    &:hover {
+      background-color: black;
+      color: white;
+      border-color: white;
+    }
+  }
+
+  .stage-fourth__header {
+    width: 100%;
+    height: 20%;
+    background-color: cornsilk;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+  }
+
+  .stage-fourth__body {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 50px;
+
+    .stage-fourth__timer {
+      font-size: 150px;
+      width: 90px;
+      font-weight: 600;
+      padding: 25px;
+    }
+
+    img {
+      width: 450px;
+      height: 450px;
+    }
+
+    .stage-fourth__number-of-question {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .stage-fourth__footer {
+    height: 200px;
+    background-color: ghostwhite;
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    font-size: 30px;
+
+
+    .first-button {
+      display: flex;
+      align-items: center;
+
+      background-color: $first-color-with-opacity;
+      border: 1px solid white;
+    }
+
+    .second-button {
+      display: flex;
+      align-items: center;
+
+      background-color: $second-color-with-opacity;
+      border: 1px solid white;
+    }
+
+    .third-button {
+      display: flex;
+      align-items: center;
+
+      background-color: $third-color-with-opacity;
+      border: 1px solid white;
+    }
+
+    .fourth-button {
+      display: flex;
+      align-items: center;
+
+      background-color: $fourth-color-with-opacity;
+      border: 1px solid white;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      flex: 1 0 50%; /* 50% width for each box */
+      box-sizing: border-box;
+
+      .icon {
+        font-size: 55px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+      }
+    }
+  }
+
+}
