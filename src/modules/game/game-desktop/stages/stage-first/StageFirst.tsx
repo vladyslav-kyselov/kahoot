@@ -65,7 +65,6 @@ const StageFirst = ({users, changeStage}: Props) => {
                         <img
                             src='./../../../../../../public/qr.png'
                             alt='QR code'
-                            loading="lazy"
                         />
                     </div>
                 </Paper>

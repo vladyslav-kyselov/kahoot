@@ -68,8 +68,7 @@ const StageSeventh = () => {
                                 <div className="img">
                                     <img
                                         src='./../../../../../../public/third.PNG'
-                                        alt='QR code'
-                                        loading="lazy"
+                                        alt='Bronze image'
                                     />
                                 </div>
                             </div>
@@ -94,8 +93,7 @@ const StageSeventh = () => {
                             <div className="img">
                                 <img
                                     src='./../../../../../../public/first.PNG'
-                                    alt='QR code'
-                                    loading="lazy"
+                                    alt='Gold image'
                                 />
                             </div>
                         </div>
@@ -121,8 +119,7 @@ const StageSeventh = () => {
                                 <div className="img">
                                     <img
                                         src='./../../../../../../public/second.PNG'
-                                        alt='QR code'
-                                        loading="lazy"
+                                        alt='Silver image'
                                     />
                                 </div>
                             </div>

@@ -7,7 +7,6 @@ const getImage = (src?: string) => {
         <img
             src={src}
             alt='QR code'
-            loading="lazy"
         />)
 };
 
