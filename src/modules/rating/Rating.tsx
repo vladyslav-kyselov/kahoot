@@ -23,7 +23,7 @@ const Rating = () => {
             const data = snapshot.val();
             const users = Object.values(data) as User[];
             if (users.length) {
-                setUsers(users.sort((a: User, b: User) => b.totalScore - a.totalScore));
+                setUsers(users.filter(i => i.totalScore > 0).sort((a: User, b: User) => b.totalScore - a.totalScore));
             }
         });
 
