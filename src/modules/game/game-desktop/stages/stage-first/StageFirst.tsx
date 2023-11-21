@@ -63,7 +63,7 @@ const StageFirst = ({users, changeStage}: Props) => {
                     </div>
                     <div className="game__qr">
                         <img
-                            src='../../../../../../public/qr.png'
+                            src='public/qr.png'
                             alt='QR code'
                         />
                     </div>
