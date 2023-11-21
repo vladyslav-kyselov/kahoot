@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import {Button} from "@mui/material";
+
 import QuizCard from "../../components/card/Card.tsx";
 import type {QuestionType} from "../../components/card/Card.tsx";
 import {db} from "../../firebase/firebase.ts";
@@ -14,6 +16,7 @@ type Quiz = {
 };
 const Quizzes = () => {
     const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+    const [startedGame, setStartedGame] = useState(false);
     const quizzesRef = ref(db, '/quizzes');
 
     useEffect(() => {
@@ -22,6 +25,12 @@ const Quizzes = () => {
             if (quizzes) {
                 setQuizzes(Object.values(quizzes));
             }
+        });
+
+        const gameQuizRef = ref(db, '/game/quizId');
+        onValue(gameQuizRef, (snapshot) => {
+            const quiz = snapshot.val();
+            setStartedGame(!!quiz);
         });
     }, []);
 
@@ -41,10 +50,18 @@ const Quizzes = () => {
         setQuizzes(newQuizzes);
     }
 
+    const finishGame = () => {
+        const gameQuizRef = ref(db, '/game');
+        set(gameQuizRef, null);
+    }
     return (
         <div className="quizzes">
             <div className="quizzes__create-new">
                 <CustomModal refButtonText="Create new Quiz" buttonHandler={createNewQuiz}/>
+                <Button variant="contained" color="error" onClick={finishGame} className="rating__come-back-button"
+                        disabled={!startedGame}>
+                    END GAME
+                </Button>
             </div>
 
             <div className="quizzes__wrapper">

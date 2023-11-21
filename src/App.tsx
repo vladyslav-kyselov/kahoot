@@ -15,8 +15,7 @@ import './main.css';
 
 function App() {
     return (
-        <div>
-            <Routes>
+        <Routes>
                 <Route index element={<Home/>}/>
                 <Route path="/home-host" element={<HomeHost/>}/>
                 <Route path="/quizzes" element={
@@ -34,7 +33,6 @@ function App() {
 
                 <Route path="*" element={<RedirectPage/>}/>
             </Routes>
-        </div>
     )
 }
 
