@@ -16,7 +16,6 @@ import {User} from "./types.ts";
 const Game = () => {
     const navigate = useNavigate();
     const [users, setUsers] = useState<User[]>([]);
-    // const [startedGame, setStartedGame] = useState(false);
     const [questions, setQuestions] = useState<QuestionType[] | null>(null);
     const [currentQuestion, setCurrentQuestion] = useState<QuestionType | null>(null);
     const [currentStage, setCurrentStage] = useState(null);

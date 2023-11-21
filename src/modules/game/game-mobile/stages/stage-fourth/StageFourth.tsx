@@ -29,14 +29,22 @@ const StageFourth = ({currentQuestion}: Props) => {
         setWaitingState(false);
 
         const time = sessionStorage.getItem("time");
-
-        if (time) {
-            sessionStorage.setItem("lastScore", time);
-        }
-
         const name = sessionStorage.getItem("name");
 
         const isCorrectedAnswer = currentQuestion?.correctVariant === variant;
+        let streak = 0;
+        const winStreakRef = ref(db, `/game/players/${name}/winStreak`);
+        onValue(winStreakRef, (snapshot) => {
+            const winStreak = snapshot.val();
+
+            if (isCorrectedAnswer) {
+                streak = winStreak + 1;
+                set(winStreakRef, winStreak + 1);
+            } else {
+                streak = 0;
+                set(winStreakRef, 0);
+            }
+        }, {onlyOnce: true});
 
         const lastAnswerAnswerRef = ref(db, `/game/players/${name}/lastAnswer/answer`);
         set(lastAnswerAnswerRef, variant);
@@ -48,21 +56,11 @@ const StageFourth = ({currentQuestion}: Props) => {
             const refMyScore = ref(db, `/game/players/${name}/score`);
             onValue(refMyScore, (snapshot) => {
                 const data = snapshot.val();
-                set(refMyScore, +data + (+time));
+                const winValue = Math.floor((+time / 100 ) * (10 * streak)) + (+time);
+                sessionStorage.setItem("lastScore", `${winValue}`);
+                set(refMyScore, +data + winValue);
             }, {onlyOnce: true});
         }
-
-        const winStreakRef = ref(db, `/game/players/${name}/winStreak`);
-        onValue(winStreakRef, (snapshot) => {
-            const winStreak = snapshot.val();
-
-            if (isCorrectedAnswer) {
-                set(winStreakRef, winStreak + 1);
-            } else {
-                set(winStreakRef, 0);
-            }
-        }, {onlyOnce: true});
-
     };
 
     return (<div className="fourth-stage">

@@ -36,6 +36,7 @@ const Quiz = () => {
         set(refStartGame, {
             quizId: location?.state?.quizId,
             startedGame: false,
+            showUsersRating: false,
             // stage 0 === 'START'
             stage: 0,
             questions: questions,
