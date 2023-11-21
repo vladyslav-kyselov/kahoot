@@ -15,7 +15,8 @@ import {User} from "../../../types.ts";
 
 type Props = {
     changeStage: () => void,
-    currentQuestion: QuestionType | null
+    currentQuestion: QuestionType | null,
+    lastQuestion?: QuestionType
 };
 
 type Accumulator = {
@@ -25,7 +26,7 @@ type Accumulator = {
     D: number
 };
 
-const StageFifth = ({changeStage, currentQuestion}: Props) => {
+const StageFifth = ({changeStage, currentQuestion, lastQuestion}: Props) => {
     const [playersAnswered, setPlayersAnswered] = useState({A: 0, B: 0, C: 0, D: 0});
     const [players, setPlayers] = useState<User[]>([]);
     useEffect(() => {
@@ -61,7 +62,7 @@ const StageFifth = ({changeStage, currentQuestion}: Props) => {
 
             <div className="stage-fifth__body">
                 <Button variant="outlined" color="success" onClick={onClick} className="stage-fourth__next-button">
-                    NEXT
+                    {currentQuestion?.id !== lastQuestion?.id ? 'NEXT': 'SHOW RESULTS'}
                 </Button>
 
                 <div className="stage-fourth__img stage-fifth__charts">

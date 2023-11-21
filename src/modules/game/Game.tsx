@@ -38,6 +38,8 @@ const Game = () => {
             // set stage "PREVIEW QUESTION"
             set(stageRef, 2);
             changeQuestion();
+        } else if(currentQuestion?.id === lastQuestion?.id && currentStage === 4) {
+            set(stageRef, 6);
         } else {
             set(stageRef, (currentStage || 0) + 1);
         }
@@ -123,6 +125,7 @@ const Game = () => {
                 <GameMobile stage={STAGES[currentStage || 0]} currentQuestion={currentQuestion}/> :
                 <GameDesktop
                     users={users}
+                    lastQuestion={questions?.[questions.length - 1]}
                     changeStage={changeStage}
                     stage={STAGES[currentStage || 0]}
                     questions={questions}
