@@ -12,6 +12,7 @@ import {Button, Zoom} from "@mui/material";
 import {db} from "../../../../../firebase/firebase.ts";
 import {onValue, ref} from "firebase/database";
 import {User} from "../../../types.ts";
+import {getChartElements} from "./utils";
 
 type Props = {
     changeStage: () => void,
@@ -62,71 +63,27 @@ const StageFifth = ({changeStage, currentQuestion, lastQuestion}: Props) => {
 
             <div className="stage-fifth__body">
                 <Button variant="outlined" color="success" onClick={onClick} className="stage-fourth__next-button">
-                    {currentQuestion?.id !== lastQuestion?.id ? 'NEXT': 'SHOW RESULTS'}
+                    {currentQuestion?.id !== lastQuestion?.id ? 'NEXT' : 'SHOW RESULTS'}
                 </Button>
 
                 <div className="stage-fourth__img stage-fifth__charts">
-                    <Zoom in={true} timeout={2000}>
-                        <div className="stage-fifth__first-result">
-                            <div className="number">
-                                {currentQuestion?.correctVariant === 'A' && <CheckIcon className="check-icon"/>}
-                                {playersAnswered.A}
-                            </div>
+                    {getChartElements(playersAnswered).map(({answer, variant, className, icon}, index) => (
+                        <Zoom key={index} in={true} timeout={2000}>
+                            <div
+                                className={`${className} ${currentQuestion?.correctVariant === variant ? '' : 'chart-opacity'}`}>
+                                <div className="number">
+                                    {currentQuestion?.correctVariant === variant && <CheckIcon className="check-icon"/>}
+                                    {answer}
+                                </div>
 
-                            <div className="chart" style={{height: `${100 * playersAnswered.A / players.length}%`}}>
+                                <div className="chart" style={{height: `${100 * answer / players.length}%`}}>
+                                </div>
+                                <div className="icon-wrapper">
+                                    {icon}
+                                </div>
                             </div>
-                            <div className="icon-wrapper">
-                                <SquareIcon className="icon"/>
-                            </div>
-                        </div>
-                    </Zoom>
-
-                    <Zoom in={true} timeout={2000}>
-                        <div className="stage-fifth__second-result">
-                            <div className="number">
-                                {currentQuestion?.correctVariant === 'B' && <CheckIcon className="check-icon"/>}
-                                {playersAnswered.B}
-                            </div>
-
-                            <div className="chart" style={{height: `${100 * playersAnswered.B / players.length}%`}}>
-
-                            </div>
-                            <div className="icon-wrapper">
-                                <CircleIcon className="icon"/>
-                            </div>
-                        </div>
-                    </Zoom>
-
-                    <Zoom in={true} timeout={2000}>
-                        <div className="stage-fifth__third-result">
-                            <div className="number">
-                                {currentQuestion?.correctVariant === 'C' && <CheckIcon className="check-icon"/>}
-                                {playersAnswered.C}
-                            </div>
-
-                            <div className="chart" style={{height: `${100 * playersAnswered.C / players.length}%`}}>
-                            </div>
-                            <div className="icon-wrapper">
-                                <TriangleIcon className="icon"/>
-                            </div>
-                        </div>
-                    </Zoom>
-
-
-                    <Zoom in={true} timeout={2000}>
-                        <div className="stage-fifth__fourth-result">
-                            <div className="number">
-                                {currentQuestion?.correctVariant === 'D' && <CheckIcon className="check-icon"/>}
-                                {playersAnswered.D}
-                            </div>
-
-                            <div className="chart" style={{height: `${100 * playersAnswered.D / players.length}%`}}>
-                            </div>
-                            <div className="icon-wrapper">
-                                <StarIcon className="icon"/>
-                            </div>
-                        </div>
-                    </Zoom>
+                        </Zoom>
+                    ))}
                 </div>
             </div>
 
