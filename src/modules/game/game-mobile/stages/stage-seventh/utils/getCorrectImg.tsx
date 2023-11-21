@@ -11,9 +11,9 @@ const getImage = (src?: string) => {
 };
 
 const urls = {
-    1: 'public/first.PNG',
-    2: 'public/second.PNG',
-    3: 'public/third.PNG',
+    1: '/first.PNG',
+    2: '/second.PNG',
+    3: '/third.PNG',
 }
 
 export const getCorrectImg = (place: number) => {

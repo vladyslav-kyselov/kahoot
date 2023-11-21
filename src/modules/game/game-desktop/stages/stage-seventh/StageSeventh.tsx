@@ -72,7 +72,7 @@ const StageSeventh = () => {
 
                                 <div className="img">
                                     <img
-                                        src='public/third.PNG'
+                                        src='/third.PNG'
                                         alt='Bronze image'
                                     />
                                 </div>
@@ -97,7 +97,7 @@ const StageSeventh = () => {
 
                             <div className="img">
                                 <img
-                                    src='public/first.PNG'
+                                    src='/first.PNG'
                                     alt='Gold image'
                                 />
                             </div>
@@ -123,7 +123,7 @@ const StageSeventh = () => {
 
                                 <div className="img">
                                     <img
-                                        src='public/second.PNG'
+                                        src='/second.PNG'
                                         alt='Silver image'
                                     />
                                 </div>
