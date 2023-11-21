@@ -19,6 +19,69 @@ const Game = () => {
     const [questions, setQuestions] = useState<QuestionType[] | null>(null);
     const [currentQuestion, setCurrentQuestion] = useState<QuestionType | null>(null);
     const [currentStage, setCurrentStage] = useState(null);
+    const [isGameStarted, setIsGameStarted] = useState(null);
+
+    useEffect(() => {
+        const startedGameRef = ref(db, '/game/startedGame');
+        onValue(startedGameRef, (snapshot) => {
+            const isGameStarted = snapshot.val();
+            setIsGameStarted(isGameStarted);
+        });
+
+        const game = ref(db, '/game');
+        onValue(game, (snapshot) => {
+            const game = snapshot.val();
+            const {currentQuestion: currQServer, stage, questions: questions_server} = game;
+
+            if (stage !== currentStage) {
+                setCurrentStage(stage);
+            }
+
+            if (currentQuestion !== currQServer) {
+                setCurrentQuestion(questions_server[currQServer]);
+            }
+
+            if (!questions) {
+                setQuestions(questions_server);
+            }
+        });
+
+        const name = sessionStorage.getItem("name");
+        if (isMobile && !name) {
+            navigate('/');
+        }
+
+        const gamePlayersRef = ref(db, '/game/players/');
+        if (!isMobile) {
+            onChildAdded(gamePlayersRef, (snapshot) => {
+                const user = snapshot.val();
+                const hasThisPlayer = users.some(el => (el.name === user.name));
+                if (!hasThisPlayer) {
+                    setUsers(prevState => ([...new Set([...prevState, user])]));
+                }
+            });
+
+            onChildRemoved(gamePlayersRef, (snapshot) => {
+                const user = snapshot.val();
+                setUsers(prevState => (prevState.filter(el => el.name !== user.name)));
+            });
+        }
+    }, []);
+
+    useEffect(() => {
+        if (isMobile) {
+            window.onbeforeunload = function () {
+                const name = sessionStorage.getItem("name");
+                if (name && !isGameStarted) {
+                    const playerRef = ref(db, '/game/players/' + name);
+                    set(playerRef, null);
+                    sessionStorage.removeItem('name');
+                    navigate('/');
+                }
+            };
+        }
+    }, [isGameStarted]);
+
 
     const changeStage = () => {
         const stageRef = ref(db, '/game/stage');
@@ -59,64 +122,6 @@ const Game = () => {
         }
 
     }
-
-    const game = ref(db, '/game');
-    useEffect(() => {
-        onValue(game, (snapshot) => {
-            const game = snapshot.val();
-            const {currentQuestion: currQServer, stage, questions: questions_server} = game;
-
-            if (stage !== currentStage) {
-                setCurrentStage(stage);
-            }
-
-            if (currentQuestion !== currQServer) {
-                setCurrentQuestion(questions_server[currQServer]);
-            }
-
-            if (!questions) {
-                setQuestions(questions_server);
-            }
-        });
-    }, []);
-
-
-    const gamePlayersRef = ref(db, '/game/players/');
-    useEffect(() => {
-        const name = sessionStorage.getItem("name");
-        if (isMobile && !name) {
-            navigate('/');
-        }
-
-        if (isMobile) {
-            window.onbeforeunload = function () {
-                const name = sessionStorage.getItem("name");
-                if (name) {
-                    const playerRef = ref(db, '/game/players/' + name);
-                    set(playerRef, null);
-                    sessionStorage.removeItem('name');
-                    navigate('/');
-                }
-            };
-        }
-    }, []);
-
-    useEffect(() => {
-        if (!isMobile) {
-            onChildAdded(gamePlayersRef, (snapshot) => {
-                const user = snapshot.val();
-                const hasThisPlayer = users.some(el => (el.name === user.name));
-                if (!hasThisPlayer) {
-                    setUsers(prevState => ([...new Set([...prevState, user])]));
-                }
-            });
-
-            onChildRemoved(gamePlayersRef, (snapshot) => {
-                const user = snapshot.val();
-                setUsers(prevState => (prevState.filter(el => el.name !== user.name)));
-            });
-        }
-    }, []);
 
 
     return (<>
