@@ -9,8 +9,17 @@ import {getCorrectImg} from "./utils/getCorrectImg.tsx";
 const StageSeventh = () => {
     const [place, setPlace] = useState<number>(0);
     const [score, setScore] = useState<number>(0);
+    const [showStatistic, setShowStatistic] = useState<boolean>(false);
 
     useEffect(() => {
+        const showRatingRef = ref(db, '/game/showUsersRating');
+        onValue(showRatingRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                setShowStatistic(data);
+            }
+        });
+
         const name = sessionStorage.getItem("name");
         const userRef = ref(db, `/game/players/${name}`);
 
@@ -46,11 +55,11 @@ const StageSeventh = () => {
             <Zoom in={true} timeout={500}>
                 <div className="seventh-stage__score-wrapper">
                     <Typography variant="h3" gutterBottom className="seventh-stage__score">
-                        Your place: {place}
+                        Your place: {showStatistic ? place: '...'}
                         <div className="score__wrapper">{score}</div>
 
                         <div className="image__wrapper">
-                            {getCorrectImg(place)}
+                            {showStatistic ? getCorrectImg(place) : null}
                         </div>
                     </Typography>
                 </div>

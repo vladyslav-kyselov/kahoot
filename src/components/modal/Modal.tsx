@@ -32,7 +32,7 @@ export default function CustomModal(props: Props) {
     }
     return (
         <React.Fragment>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <Button variant="contained" onClick={handleClickOpen}>
                 Add new quiz
             </Button>
             <Dialog

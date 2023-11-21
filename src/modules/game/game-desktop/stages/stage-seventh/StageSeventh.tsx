@@ -23,6 +23,11 @@ const StageSeventh = () => {
 
             }
         }, {onlyOnce: true})
+
+        setTimeout(() => {
+            const showRatingRef = ref(db, '/game/showUsersRating');
+            set(showRatingRef, true);
+        }, 9000);
     }, []);
 
     const saveScores = () => {
