@@ -8,7 +8,7 @@ import Masonry from '@mui/lab/Masonry';
 
 import './index.scss';
 import {db} from "../../../../../firebase/firebase.ts";
-import {onValue, ref} from "firebase/database";
+import {onValue, ref, set} from "firebase/database";
 
 type User = {
     name: string,
@@ -48,6 +48,9 @@ const StageFirst = ({users, changeStage}: Props) => {
     }, []);
     const onStartGame = () => {
         changeStage();
+
+        const gameRef = ref(db, '/game/startedGame');
+        set(gameRef, true);
     }
     return (
         <>
@@ -60,12 +63,6 @@ const StageFirst = ({users, changeStage}: Props) => {
                                 window.location.href.replace(pathname, '')
                             }
                         </div>
-                    </div>
-                    <div className="game__qr">
-                        <img
-                            src='/qr.png'
-                            alt='QR code'
-                        />
                     </div>
                 </Paper>
             </div>
@@ -84,6 +81,13 @@ const StageFirst = ({users, changeStage}: Props) => {
                 {isAdmin ? <Button variant="outlined" color="success" className="game__start-game" onClick={onStartGame} disabled={!users.length}>
                     Start
                 </Button>: null}
+            </div>
+
+            <div className="game__qr">
+                <img
+                    src='/qr.png'
+                    alt='QR code'
+                />
             </div>
         </>
     );
