@@ -70,7 +70,7 @@ const Game = () => {
 
     useEffect(() => {
         if (isMobile) {
-            window.onbeforeunload = function () {
+            window.onunload = window.onbeforeunload = function () {
                 const name = sessionStorage.getItem("name");
                 if (name && !isGameStarted) {
                     const playerRef = ref(db, '/game/players/' + name);
