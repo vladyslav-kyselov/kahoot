@@ -34,9 +34,8 @@ const Question = (props: Props) => {
         setVarC(props.variantC || '');
         setVarD(props.variantD || '');
         setCorrectAnswer(props.correctVariant);
-        console.log(props.correctVariant, '!!!');
-        setExpanded(props.isNew || false);
 
+        setExpanded(props.isNew || false);
         setTime(props.time || 10)
     }, []);
 
