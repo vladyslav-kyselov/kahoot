@@ -15,14 +15,13 @@ const StageSecond = ({questions, changeStage}: Props) => {
     }, 2500)
 
     setTimeout(() => {
-        console.log('click')
         changeStage();
     }, 2700)
     return (
             <Zoom in={state} className="game__stage-second" timeout={1000}>
                 <div>
                     <div className="quantity-question">{questions?.length} Questions.</div>
-                    <div className="">Are you ready?</div>
+                    <div className="stage-second__are-you-ready">Are you ready?</div>
                 </div>
             </Zoom>
     );

@@ -23,7 +23,7 @@ const drawerWidth = 240;
 const navItems = [{
     title: 'Game',
     link: '/game',
-    disabled: true
+    disabled: false
 }, {
     title: 'Quizzes',
     link: '/quizzes',
