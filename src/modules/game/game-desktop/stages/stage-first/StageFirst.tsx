@@ -60,7 +60,7 @@ const StageFirst = ({users, changeStage}: Props) => {
                         Join to the game
                         <div className="game__url">
                             {
-                                window.location.href.replace(pathname, '')
+                                window.location.origin
                             }
                         </div>
                     </div>
