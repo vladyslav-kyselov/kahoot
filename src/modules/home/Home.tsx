@@ -101,6 +101,11 @@ const Home = () => {
                         Join like a admin
                     </Link>
                 </div>
+                <div className="home__host-join">
+                    <Link to='/rating'>
+                        Rating page
+                    </Link>
+                </div>
             </div>
         </div>
     );
