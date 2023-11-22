@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
@@ -21,7 +21,6 @@ type Props = {
 }
 
 const StageFirst = ({users, changeStage}: Props) => {
-    const {pathname} = useLocation();
     const navigate = useNavigate();
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
