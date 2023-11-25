@@ -45,17 +45,31 @@ const StageSeventh = () => {
             }, {onlyOnce: true});
         });
     };
-    const onClick = () => {
+
+    const finishGame = () => {
         saveScores();
 
         const gameRef = ref(db, '/game');
         set(gameRef, null);
+    }
+    const onClick = () => {
+        finishGame()
         navigate('/quizzes');
     };
+
+    const onRatingClick = () => {
+        finishGame();
+        navigate('/rating');
+    }
+
     return (
         <div className="seventh-stage">
             <Button variant="outlined" color="success" onClick={onClick} className="seventh-stage__close-button">
                 CLOSE GAME
+            </Button>
+
+            <Button variant="outlined" color="success" onClick={onRatingClick} className="seventh-stage__close-button rating">
+                RATING
             </Button>
 
             {players.length ? <>
