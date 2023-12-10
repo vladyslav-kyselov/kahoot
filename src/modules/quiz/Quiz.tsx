@@ -56,17 +56,11 @@ const Quiz = () => {
             <div className="quizzes__wrapper">
                 {questions.map((question) => (
                     <Question
-                        id={question.id}
-                        time={question.time}
                         key={question.id}
                         img={question.img}
-                        title={question.title}
                         isNew={question.isNew}
-                        variantA={question.variantA}
-                        variantB={question.variantB}
-                        variantC={question.variantC}
-                        variantD={question.variantD}
-                        correctVariant={question.correctVariant}
+                        questionType={question.questionType}
+                        {...question}
                     />
                 ))}
             </div>

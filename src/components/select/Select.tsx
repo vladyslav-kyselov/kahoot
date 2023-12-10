@@ -6,15 +6,16 @@ import Select, {SelectChangeEvent} from '@mui/material/Select';
 
 import './index.scss';
 import {useEffect, useState} from "react";
-
-export type CorrectAnswers = 'A' | 'B' | 'C' | 'D';
+import {CorrectQuizAnswer} from "../../types.ts";
+import {QUESTION_TYPE} from "../../constants.ts";
 
 type Props = {
-    defaultValue: CorrectAnswers,
-    setCorrectAnswer: (correctAnswer: CorrectAnswers) => void
+    type: QUESTION_TYPE,
+    defaultValue?: CorrectQuizAnswer,
+    setCorrectAnswer: (key: string, correctAnswer: CorrectQuizAnswer) => void
 };
-export default function CustomSelect({defaultValue, setCorrectAnswer}: Props) {
-    const [value, setValue] = useState<CorrectAnswers>(defaultValue);
+export default function CustomSelect({defaultValue = 'A', setCorrectAnswer, type}: Props) {
+    const [value, setValue] = useState<CorrectQuizAnswer>(defaultValue);
 
     useEffect(() => {
         if (value !== defaultValue) {
@@ -22,12 +23,12 @@ export default function CustomSelect({defaultValue, setCorrectAnswer}: Props) {
         }
     }, [defaultValue])
     const handleChange = (event: SelectChangeEvent) => {
-        setValue(event.target.value as CorrectAnswers);
-        setCorrectAnswer(event.target.value as CorrectAnswers);
+        setValue(event.target.value as CorrectQuizAnswer);
+        setCorrectAnswer('correctAnswer', event.target.value as CorrectQuizAnswer);
     };
 
     return (
-        <FormControl fullWidth className="custom-select">
+        <FormControl fullWidth className="custom-select" size="small">
             <InputLabel id="demo-simple-select-label">Correct Answer</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
@@ -38,8 +39,12 @@ export default function CustomSelect({defaultValue, setCorrectAnswer}: Props) {
             >
                 <MenuItem value="A">A</MenuItem>
                 <MenuItem value="B">B</MenuItem>
-                <MenuItem value="C">C</MenuItem>
-                <MenuItem value="D">D</MenuItem>
+                {type === QUESTION_TYPE.QUIZ &&
+                    <div>
+                        <MenuItem value="C">C</MenuItem>
+                        <MenuItem value="D">D</MenuItem>
+                    </div>
+                }
             </Select>
         </FormControl>
     );
