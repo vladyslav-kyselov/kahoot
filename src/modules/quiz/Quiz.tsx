@@ -21,6 +21,8 @@ const Quiz = () => {
             const question = snapshot.val();
             if (question) {
                 setQuestions(question.filter((i: QuestionType) => i));
+            } else {
+                setQuestions([]);
             }
         });
     }, []);
@@ -47,6 +49,12 @@ const Quiz = () => {
         navigate('/game');
     };
 
+    const onDelete = (id: number) => {
+        setQuestions(prevState => prevState.filter((question) => question.id !== id));
+        const refQuestions = ref(db, '/quizzes/' + location?.state?.quizId + '/questions/' + id);
+        set(refQuestions, null);
+    };
+
     return (
         <div className="quizzes">
             <div className="quizzes__create-new">
@@ -60,6 +68,7 @@ const Quiz = () => {
                         img={question.img}
                         isNew={question.isNew}
                         questionType={question.questionType}
+                        onDelete={onDelete}
                         {...question}
                     />
                 ))}

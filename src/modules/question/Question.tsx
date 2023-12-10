@@ -25,7 +25,9 @@ import {
 
 import './index.scss';
 
-type Props = QuestionType;
+type Props = {
+    onDelete: (id: number) => void,
+} & QuestionType;
 
 const Question = (props: Props) => {
     const location = useLocation();
@@ -83,9 +85,8 @@ const Question = (props: Props) => {
         setExpanded(false);
     };
 
-    const onDelete = () => {
-        const refQuestions = ref(db, '/quizzes/' + location?.state?.quizId + '/questions/' + props.id);
-        set(refQuestions, null);
+    const deleteQuestion = () => {
+        props.onDelete(props.id);
     };
 
     return (
@@ -164,7 +165,7 @@ const Question = (props: Props) => {
                             Save
                         </Button>
 
-                        <Confirmation buttonHandler={onDelete} variant="outlined"/>
+                        <Confirmation buttonHandler={deleteQuestion} variant="outlined"/>
 
                     </div>
                 </AccordionDetails>
