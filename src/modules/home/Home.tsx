@@ -84,7 +84,7 @@ const Home = () => {
                     error={!!warning}
                     helperText={warning}
                     className="home__input"
-                    label="Name"
+                    label="Ім'я"
                     variant="outlined"
                     onChange={(e) => {
                         setName(e.target.value);
@@ -94,16 +94,16 @@ const Home = () => {
                     }}
                 />
                 <Button disabled={!isStartedQuiz} variant="outlined" className="home__join-room" onClick={addNewUser}>
-                    Start Game
+                    Почати гру
                 </Button>
                 <div className="home__host-join">
                     <Link to='/home-host'>
-                        Join like a admin
+                        Приєднатись, як адміністратор
                     </Link>
                 </div>
                 <div className="home__host-join">
                     <Link to='/rating'>
-                        Rating page
+                        Сторінка рейтингу
                     </Link>
                 </div>
             </div>

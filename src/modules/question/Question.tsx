@@ -162,7 +162,7 @@ const Question = (props: Props) => {
 
                     <div className="question__action-button">
                         <Button variant="outlined" color="success" onClick={onSave}>
-                            Save
+                            Зберегти
                         </Button>
 
                         <Confirmation buttonHandler={deleteQuestion} variant="outlined"/>

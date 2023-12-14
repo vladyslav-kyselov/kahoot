@@ -14,7 +14,7 @@ const StageThird = ({currentQuestion}: Props) => {
             <Zoom in={true} timeout={500}>
                 <div className="third-stage__wrapper">
                     <Typography variant="h6" gutterBottom className="third-stage__font">
-                        Question № {(currentQuestion?.id || 0) + 1}
+                        Запитання № {(currentQuestion?.id || 0) + 1}
                     </Typography>
                 </div>
             </Zoom>

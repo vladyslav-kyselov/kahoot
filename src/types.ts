@@ -11,7 +11,7 @@ export type QuizTypes = {
 };
 
 export type TrueOrFalseTypes = {
-    correctVariant?: boolean
+    correctVariant?: string
 };
 export type TypeAnswerTypes = {
     correctVariant?: string
@@ -25,7 +25,7 @@ export type PuzzleTypes = {
     variantA?: string,
     variantB?: string,
     variantC?: string,
-    variantD?: string
+    variantD?: string,
 };
 
 export type AllQuestionVariantsType = QuizTypes | TrueOrFalseTypes | TypeAnswerTypes | SliderTypes | PuzzleTypes;

@@ -10,6 +10,7 @@ import {QuestionType} from "../../../../../components/card/Card.tsx";
 import Countdown from "../../../utils/getScoreForWinner.ts";
 import {db} from "../../../../../firebase/firebase.ts";
 import {onValue, ref, set} from "firebase/database";
+import {QUESTION_TYPE} from "../../../../../constants.ts";
 
 type Props = {
     currentQuestion: QuestionType | null
@@ -31,7 +32,8 @@ const StageFourth = ({currentQuestion}: Props) => {
         const time = sessionStorage.getItem("time");
         const name = sessionStorage.getItem("name");
 
-        const isCorrectedAnswer = currentQuestion?.correctVariant === variant;
+        const questionType = currentQuestion?.questionType as QUESTION_TYPE;
+        const isCorrectedAnswer = currentQuestion?.[questionType]?.correctVariant === variant;
         let streak = 0;
         const winStreakRef = ref(db, `/game/players/${name}/winStreak`);
         onValue(winStreakRef, (snapshot) => {

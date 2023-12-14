@@ -10,7 +10,7 @@ const StageSecond = () => {
         <div className="second-stage">
             <Zoom in={true} timeout={500}>
                 <Typography variant="h6" gutterBottom className="second-stage__font">
-                    Get ready!
+                    Приготовся до гри!
                 </Typography>
             </Zoom>
         </div>

@@ -11,15 +11,15 @@ type Props = {
 };
 const TrueFalse = (props: Props) => {
     const {questionTypeParams, setQuestionTypeParams} = props;
-    const [radioButtonValue, setRadioButtonValue] = useState<boolean>(true);
+    const [radioButtonValue, setRadioButtonValue] = useState<string>('A');
 
     useEffect(() => {
-        const correctVariant = questionTypeParams?.correctVariant === undefined ? true : questionTypeParams?.correctVariant;
+        const correctVariant = questionTypeParams?.correctVariant === undefined ? 'A' : questionTypeParams?.correctVariant;
         setRadioButtonValue(correctVariant);
         setQuestionTypeParams({correctVariant});
     }, []);
 
-    const setValue = (key: string, value: boolean) => {
+    const setValue = (key: string, value: string) => {
         setQuestionTypeParams({
             ...questionTypeParams,
             [key]: value
@@ -34,10 +34,10 @@ const TrueFalse = (props: Props) => {
                 aria-labelledby="demo-radio-buttons-group-label"
                 value={radioButtonValue}
                 name="radio-buttons-group"
-                onChange={e => setValue('correctVariant', e.target.value === 'true')}
+                onChange={e => setValue('correctVariant', e.target.value)}
             >
-                <FormControlLabel value={true} control={<Radio/>} label="True"/>
-                <FormControlLabel value={false} control={<Radio/>} label="False"/>
+                <FormControlLabel value='A' control={<Radio/>} label="True"/>
+                <FormControlLabel value='B' control={<Radio/>} label="False"/>
             </RadioGroup>
         </>
     );

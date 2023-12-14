@@ -37,7 +37,7 @@ export default function Confirmation(props: Props) {
     return (
         <React.Fragment>
             <Button color="error" variant={variant} onClick={handleClickOpen}>
-                Delete
+                Видалити
             </Button>
             <Dialog
                 open={open}
@@ -47,12 +47,12 @@ export default function Confirmation(props: Props) {
                 className="confirmation__modal"
             >
                 <Typography variant="h6" gutterBottom className="modal__font">
-                    Are you sure?
+                    Ви впевнені, що хочете видалити?
                 </Typography>
                 <DialogActions className="action-buttons">
-                    <Button color="error" onClick={onDelete}>Delete</Button>
+                    <Button color="error" onClick={onDelete}>Видалити</Button>
                     <Button onClick={handleClose}>
-                        Cancel
+                        Відмінити
                     </Button>
                 </DialogActions>
             </Dialog>

@@ -93,14 +93,14 @@ export default function QuizCard(props: Props) {
                 <div className="card__action-buttons">
                     {editMode ? (<>
                         <Button color="success" onClick={onSave}>
-                            Save
+                            Зберегти
                         </Button>
                         <Button color="primary" onClick={() => setEditMode(false)}>
-                            Cancel
+                            Відмінити
                         </Button>
                     </>) : (<>
                         <Button color="primary" onClick={onEdit}>
-                            Edit
+                            Редагувати
                         </Button>
                         <Confirmation buttonHandler={onDelete} />
 

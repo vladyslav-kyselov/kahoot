@@ -20,8 +20,8 @@ const StageSecond = ({questions, changeStage}: Props) => {
     return (
             <Zoom in={state} className="game__stage-second" timeout={1000}>
                 <div>
-                    <div className="quantity-question">{questions?.length} Questions.</div>
-                    <div className="stage-second__are-you-ready">Are you ready?</div>
+                    <div className="quantity-question">{questions?.length} Запитань.</div>
+                    <div className="stage-second__are-you-ready">Ви готові?</div>
                 </div>
             </Zoom>
     );

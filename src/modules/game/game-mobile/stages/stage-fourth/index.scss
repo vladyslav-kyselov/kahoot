@@ -29,7 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Gluten', cursive;
+    font-family: 'Dela Gothic One', cursive;
     font-size: 35px;
     color: white;
   }
@@ -55,25 +55,25 @@
 
   .square-icon {
     color: white;
-    background-color: $first-color-with-opacity;
+    background-color: $first-color;
     font-size: 80px;
   }
 
   .circle-icon {
     color: white;
-    background-color: $second-color-with-opacity;
+    background-color: $second-color;
     font-size: 80px;
   }
 
   .triangle-icon {
-    background-color: $third-color-with-opacity;
+    background-color: $third-color;
     color: white;
     font-size: 80px;
   }
 
   .star-icon {
     color: white;
-    background-color: $fourth-color-with-opacity;;
+    background-color: $fourth-color;
     font-size: 80px;
   }
 

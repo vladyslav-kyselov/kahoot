@@ -65,11 +65,11 @@ const StageSeventh = () => {
     return (
         <div className="seventh-stage">
             <Button variant="outlined" color="success" onClick={onClick} className="seventh-stage__close-button">
-                CLOSE GAME
+                завершити гру
             </Button>
 
             <Button variant="outlined" color="success" onClick={onRatingClick} className="seventh-stage__close-button rating">
-                RATING
+                рейтинг
             </Button>
 
             {players.length ? <>

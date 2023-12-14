@@ -1,0 +1,94 @@
+.stage-fifth {
+  .stage-fifth__answer-icon{
+    font-size: 45px;
+    padding-left: 10px;
+    height: 100%;
+  }
+
+  .stage-fifth__answer-wrong-icon {
+    padding-left: 10px;
+    font-size: 45px;
+  }
+
+  .stage-fifth__answer {
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+  .stage-fifth__answer-wrapper {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 30%;
+    margin: 10px;
+  }
+
+  .stage-fifth__type-answer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .stage-fifth__answer_true {
+    .MuiInputBase-input {
+      font-size: 40px !important;;
+    }
+  }
+
+  .slider-wrapper {
+    width: 95%;
+    position: relative;
+  }
+  .slider {
+    position: absolute;
+    width: 100%;
+  }
+
+  .slider-disabled {
+    .MuiSlider-thumbSizeMedium {
+      z-index: 2;
+
+    }
+  }
+
+  .slider-active {
+    .MuiSlider-thumb {
+      z-index: 3;
+    }
+
+    .MuiSlider-valueLabel {
+      background: green;
+      border-radius: 5px;
+      font-size: 100px;
+    }
+
+    .MuiSlider-valueLabel::before {
+      content: '✓';
+      rotate: -45deg;
+      top: -130px;
+      left: 30px;
+      right:50px;
+      background: transparent;
+      position: absolute;
+      color: green;
+    }
+  }
+
+
+  .stage-fifth__puzzle {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+  }
+
+  .stage-fifth__puzzle-element {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+  }
+}

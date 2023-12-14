@@ -58,8 +58,8 @@ const Quiz = () => {
     return (
         <div className="quizzes">
             <div className="quizzes__create-new">
-                <Button variant="contained" onClick={onAddNewQuestion}>Add new question</Button>
-                <Button variant="contained" color="success" onClick={onStartGame}>Create Game</Button>
+                <Button variant="contained" onClick={onAddNewQuestion}>Додати нове запитання</Button>
+                <Button variant="contained" color="success" onClick={onStartGame}>Почати гру</Button>
             </div>
             <div className="quizzes__wrapper">
                 {questions.map((question) => (

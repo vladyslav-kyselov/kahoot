@@ -80,12 +80,12 @@ const StageFifth = ({currentQuestion}: Props) => {
                 <Zoom in={true} timeout={500}>
                     <div className="incorrect-answer__wrapper">
                         <Typography variant="h3" gutterBottom className="incorrect-answer__title">
-                            Incorrect!
+                            Помилка :(
                         </Typography>
                         <DoNotDisturbAltIcon className="incorrect-answer__icon" />
 
                         <Typography variant="h3" gutterBottom className="incorrect-answer__streak">
-                            You loose your streak.
+                            Ти втратив послідовність перемог.
                         </Typography>
                     </div>
 
