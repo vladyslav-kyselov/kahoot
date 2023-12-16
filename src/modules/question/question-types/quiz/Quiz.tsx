@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {TextField} from "@mui/material";
 
 import {CustomSelect} from "../../../../components/select";
-import {QUESTION_TYPE} from "../../../../constants.ts";
 import {QuizTypes} from "../../../../types.ts";
 
 import './styles.scss';
