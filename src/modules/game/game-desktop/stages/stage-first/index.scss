@@ -13,6 +13,11 @@
   }
 
   &__title {
+    span {
+      color: black;
+      -webkit-text-stroke: 3px white;
+    }
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,13 +51,16 @@
   }
 
   .game__start-game {
-    width: 150px;
-    height: 80px;
+    width: 350px;
+    height: 100px;
     margin-top: 15px;
     font-size: 35px;
-    font-family: 'Gluten', cursive;
+    font-family: 'Dela Gothic One', cursive;
     color: white;
     border-color: white;
+    position: fixed;
+    right: 25px;
+    top: 30px;
 
     &:hover {
       background-color: white;
@@ -73,13 +81,13 @@
 
   .game__player {
     width: fit-content;
-    margin: 15px;
-    padding: 20px;
-    font-size: 35px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
     background-color: white;
     overflow: hidden;
     text-overflow: ellipsis;
-
+    max-width: 250px;
   }
 
   .game__info-wrapper {

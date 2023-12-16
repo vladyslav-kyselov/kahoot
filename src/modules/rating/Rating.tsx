@@ -57,11 +57,11 @@ const Rating = () => {
         <div className="rating__wrapper">
 
                 <Button variant="outlined" color="success" onClick={onClick} className="rating__come-back-button">
-                    {isAdmin ? 'TO QUIZZES' : 'TO START'}
+                    {isAdmin ? 'До запитань' : 'На головну'}
                 </Button>
 
             <Typography variant="h3" gutterBottom className="rating__title">
-                Rating
+                Рейтинг
             </Typography>
             <div className="rating__users">
                 {users && users.map(({name, totalScore}, index) => (

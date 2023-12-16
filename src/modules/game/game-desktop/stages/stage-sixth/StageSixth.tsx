@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button} from "@mui/material";
+import {Button, Zoom} from "@mui/material";
 
 import './index.scss';
 import Paper from "@mui/material/Paper";
@@ -35,7 +35,7 @@ const StageSixth = ({changeStage}: Props) => {
         <div className="stage-sixth">
             <div className="stage-sixth__action-bitton">
                 <Button variant="outlined" color="success" onClick={onClick} className="stage-sixth__next-stage">
-                    NEXT
+                    Далі
                 </Button>
             </div>
 
@@ -44,10 +44,12 @@ const StageSixth = ({changeStage}: Props) => {
                     players && players.sort((a, b) => b.score - a.score).map((player, index) => (
                         <>
                             {index <= 9 ?
-                                <Paper elevation={3} key={index} className="stage-sixth__score-result">
-                                    <div className="name">{player.name}</div>
-                                    <div>{player.score}</div>
-                                </Paper> : null
+                                <Zoom in={true} timeout={1500 + 400 * index}>
+                                    <Paper elevation={3} key={index} className="stage-sixth__score-result">
+                                        <div className="name">{player.name}</div>
+                                        <div>{player.score}</div>
+                                    </Paper>
+                                </Zoom> : null
                             }
                         </>
                     ))

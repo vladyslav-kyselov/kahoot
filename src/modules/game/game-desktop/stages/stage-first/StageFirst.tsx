@@ -56,7 +56,7 @@ const StageFirst = ({users, changeStage}: Props) => {
             <div className="game__header">
                 <Paper elevation={3} className="game__info-wrapper">
                     <div>
-                        Join to the game
+                        Приєднатись до гри
                         <div className="game__url">
                             {
                                 window.location.origin
@@ -64,10 +64,19 @@ const StageFirst = ({users, changeStage}: Props) => {
                         </div>
                     </div>
                 </Paper>
+                {isAdmin ? <Button variant="outlined" color="success" className="game__start-game" onClick={onStartGame}
+                                   disabled={!users.length}>
+                    Розпочати
+                </Button> : null}
             </div>
-            <div className="game__title">QUIZY</div>
+            <div className="game__title">
+                <span>ВІКТОРИНА</span>
+            </div>
             <div className="game__body-wrapper">
-                <div className="game__activity"><div className="quantity__text">Number players:</div> <div className="quantity">{users.length > 0 ? users.length : 0}</div></div>
+                <div className="game__activity">
+                    <div className="quantity__text">Кі-ть гравців:</div>
+                    <div className="quantity">{users.length > 0 ? users.length : 0}</div>
+                </div>
                 <div className="game__players">
                     <Masonry columns={4} spacing={2}>
                         {users.map((player, index) => (
@@ -77,9 +86,6 @@ const StageFirst = ({users, changeStage}: Props) => {
                         ))}
                     </Masonry>
                 </div>
-                {isAdmin ? <Button variant="outlined" color="success" className="game__start-game" onClick={onStartGame} disabled={!users.length}>
-                    Start
-                </Button>: null}
             </div>
 
             <div className="game__qr">

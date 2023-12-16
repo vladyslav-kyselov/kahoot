@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect} from 'react';
+import {ReactNode, useEffect, useState} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -21,21 +21,21 @@ import './index.scss';
 
 const drawerWidth = 240;
 const navItems = [{
-    title: 'Game',
+    title: 'Гра',
     link: '/game',
     disabled: false
 }, {
-    title: 'Quizzes',
+    title: 'Збірки запитань',
     link: '/quizzes',
     disabled: false
 }, {
-    title: 'Rating',
+    title: 'Рейтинг',
     link: '/rating',
     disabled: false
 }];
 
-export default function DrawerAppBar({children}: { children: React.ReactNode }) {
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+export default function DrawerAppBar({children}: { children: ReactNode }) {
+    const [mobileOpen, setMobileOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -74,7 +74,7 @@ export default function DrawerAppBar({children}: { children: React.ReactNode }) 
     }
 
     return (
-        <Box>
+        <Box className="header">
             <CssBaseline/>
             <AppBar component="nav">
                 <Toolbar>
@@ -96,9 +96,13 @@ export default function DrawerAppBar({children}: { children: React.ReactNode }) 
                         TALNE CHURCH KAHOOT
                     </Typography>
                     <Box sx={{display: {xs: 'none', sm: 'block'}}}>
-                        {navItems.map((item) => (
+                        {navItems.map((item, index) => (
                             <Button key={item.title} sx={{color: '#fff'}} disabled={item.disabled}>
-                                <Link to={item.link} className={`header__link ${item.disabled? 'header__disabled': ''}`}>
+                                <Link to={item.link}
+                                      className={`header__link 
+                                      ${index !== navItems.length - 1? 'header__border-right' : ''} 
+                                      ${item.disabled ? 'header__disabled' : ''}`}
+                                >
                                     {item.title}
                                 </Link>
                             </Button>

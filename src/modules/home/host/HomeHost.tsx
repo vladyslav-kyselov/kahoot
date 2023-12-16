@@ -27,21 +27,21 @@ const HomeHost = () => {
 
     return (
         <div className="home-host">
-            <div className="home-host__title">LOG IN</div>
-            <TextField className="home-host__login" label="Login" variant="outlined"
+            <div className="home-host__title">Секретний кабінет</div>
+            <TextField className="home-host__login" label="Ім'я" variant="outlined"
                        onChange={e => setLogin(e.currentTarget.value)} error={!!warningMessage}/>
-            <TextField className="home-host__password" label="Password" variant="outlined"
+            <TextField className="home-host__password" label="Пароль" variant="outlined"
                        onChange={e => setPassword(e.currentTarget.value)}
                        error={!!warningMessage}
                        helperText={warningMessage}
                        type="password"
             />
             <Button variant="outlined" color="success" onClick={onClick} className="home-host__log-in">
-                LOG IN
+                Увійти
             </Button>
             <div className="home-host__return-link">
                 <Link to='/'>
-                    Back to user log in page
+                    Повернутись назад
                 </Link>
             </div>
         </div>

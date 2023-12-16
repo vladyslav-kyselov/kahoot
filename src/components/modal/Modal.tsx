@@ -7,8 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import './index.scss';
 
 type Props = {
-    buttonHandler?: (name: string) => void,
-    refButtonText: string
+    buttonHandler?: (name: string) => void
 }
 
 export default function CustomModal(props: Props) {
@@ -31,9 +30,9 @@ export default function CustomModal(props: Props) {
         }
     }
     return (
-        <React.Fragment>
+        <>
             <Button variant="contained" onClick={handleClickOpen}>
-                Add new quiz
+                Добавити нову збірку
             </Button>
             <Dialog
                 open={open}
@@ -44,18 +43,18 @@ export default function CustomModal(props: Props) {
             >
                 <TextField
                     className="modal__input"
-                    label="Quiz Name"
+                    label="Назва збірки"
                     variant="outlined"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
                 <DialogActions>
-                    <Button onClick={onSave} disabled={!name}>Save</Button>
+                    <Button onClick={onSave} color="success" disabled={!name}>Зберегти</Button>
                     <Button onClick={handleClose}>
-                        Cancel
+                        Відмінити
                     </Button>
                 </DialogActions>
             </Dialog>
-        </React.Fragment>
+        </>
     );
 }

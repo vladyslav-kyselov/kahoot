@@ -1,0 +1,7 @@
+export enum QUESTION_TYPE {
+    QUIZ = 'QUIZ',
+    TRUE_OR_FALSE = 'TRUE_OR_FALSE',
+    TYPE_ANSWER = 'TYPE_ANSWER',
+    SLIDER = 'SLIDER',
+    PUZZLE = 'PUZZLE'
+}

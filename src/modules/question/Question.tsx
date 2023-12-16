@@ -1,49 +1,68 @@
 import React, {useEffect, useState} from 'react';
 import {Accordion, AccordionDetails, AccordionSummary, Button, TextField} from "@mui/material";
-import {CustomSelect} from "../../components/select";
-import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Typography from "@mui/material/Typography";
 
-import './index.scss';
 import {ref, set} from "firebase/database";
 import {db} from "../../firebase/firebase.ts";
 import {useLocation} from "react-router-dom";
-import {CorrectAnswers} from "../../components/select/Select.tsx";
 import {QuestionType} from "../../components/card/Card.tsx";
 import Confirmation from "../../components/confirmation/Confirmation.tsx";
+import {QuestionVariant} from '../../components/question-type-select'
+import {QUESTION_TYPE} from "../../constants.ts";
+import {QuizType} from "./question-types/quiz";
+import {TrueFalse} from "./question-types/true-false";
+import {TypeAnswer} from "./question-types/type-answer";
+import {Slider} from "./question-types/slider";
+import {Puzzle} from "./question-types/puzzle";
+import {PuzzleType, QuizTypes, SliderTypes, TrueOrFalseTypes, TypeAnswerTypes} from "../../types.ts";
 
-type Props = QuestionType;
+import './index.scss';
+
+type Props = {
+    onDelete: (id: number) => void,
+} & QuestionType;
 
 const Question = (props: Props) => {
     const location = useLocation();
     const [expanded, setExpanded] = useState(false);
+    const [questionType, setQuestionType] = useState<QUESTION_TYPE | null>(null);
+    // TODO: rework any type
+
+    const [quizParams, setQuizParams] = useState<QuizTypes | null>(null);
+    const [trueFalseParams, setTrueFalseParams] = useState<TrueOrFalseTypes | null>(null);
+    const [typeAnswerParams, setTypeAnswerParams] = useState<TypeAnswerTypes | null>(null);
+    const [sliderParams, setSliderParams] = useState<SliderTypes | null>(null);
+    const [puzzleParams, setPuzzleParams] = useState<PuzzleType[]>([]);
+
     const [title, setTitle] = useState('');
     const [time, setTime] = useState<number>(10);
     const [img, setUrl] = useState('');
-    const [variantA, setVarA] = useState('');
-    const [variantB, setVarB] = useState('');
-    const [variantC, setVarC] = useState('');
-    const [variantD, setVarD] = useState('');
-    const [correctVariant, setCorrectAnswer] = useState<CorrectAnswers>('A');
 
     useEffect(() => {
         setTitle(props.title);
         setUrl(props.img || '');
-        setVarA(props.variantA || '');
-        setVarB(props.variantB || '');
-        setVarC(props.variantC || '');
-        setVarD(props.variantD || '');
-        setCorrectAnswer(props.correctVariant);
-
-        setExpanded(props.isNew || false);
         setTime(props.time || 10)
+        setExpanded(props.isNew || false);
+        setQuestionType(props.questionType || null);
+
+        setQuizParams(props[QUESTION_TYPE.QUIZ] || null);
+        setTrueFalseParams(props[QUESTION_TYPE.TRUE_OR_FALSE] || null);
+        setTypeAnswerParams(props[QUESTION_TYPE.TYPE_ANSWER] || null);
+        setSliderParams(props[QUESTION_TYPE.SLIDER] || null);
+        if (props[QUESTION_TYPE.PUZZLE]) {
+            const puzzle = Object.values(props[QUESTION_TYPE.PUZZLE]) || [];
+            setPuzzleParams(puzzle);
+        }
     }, []);
 
 
     const onSave = () => {
         const refQuestions = ref(db, '/quizzes/' + location?.state?.quizId + '/questions/' + props.id);
-        if (!title || !variantA || !variantB) {
-            alert('Please fill all required fields');
+
+        // TODO: add validation
+        if (!title) {
+            alert('Please fill question title');
             return;
         }
 
@@ -52,19 +71,19 @@ const Question = (props: Props) => {
             title,
             time,
             img,
-            variantA,
-            variantB,
-            variantC,
-            variantD,
-            correctVariant
+            questionType,
+            [QUESTION_TYPE.QUIZ]: {...quizParams},
+            [QUESTION_TYPE.TRUE_OR_FALSE]: {...trueFalseParams},
+            [QUESTION_TYPE.TYPE_ANSWER]: {...typeAnswerParams},
+            [QUESTION_TYPE.SLIDER]: {...sliderParams},
+            [QUESTION_TYPE.PUZZLE]: {...puzzleParams}
         };
         set(refQuestions, newQuestion);
         setExpanded(false);
     };
 
-    const onDelete = () => {
-        const refQuestions = ref(db, '/quizzes/' + location?.state?.quizId + '/questions/' + props.id);
-        set(refQuestions, null);
+    const deleteQuestion = () => {
+        props.onDelete(props.id);
     };
 
     return (
@@ -76,70 +95,75 @@ const Question = (props: Props) => {
                     id="panel1a-header"
                     onClick={() => setExpanded(!expanded)}
                 >
-                    <Typography>{props.isNew && !title ? 'New Question' : title}</Typography>
+                    <Typography>{props.isNew && !title ? 'Нове запитання' : title}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <TextField
-                        className="question__input" label="Title*"
+                        size="small"
+                        className="question__input"
+                        label="Запитання"
                         variant="outlined"
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
 
                     <TextField
+                        size="small"
                         className="question__input"
-                        label="Image Link"
+                        label="Посилання на JPG/GIF"
                         variant="outlined"
                         value={img}
                         onChange={e => setUrl(e.target.value)}
                     />
 
                     <TextField
+                        size="small"
                         className="question__input"
-                        label="Variant  A*"
-                        variant="outlined"
-                        value={variantA}
-                        onChange={e => setVarA(e.target.value)}
-                    />
-                    <TextField
-                        className="question__input"
-                        label="Variant  B*"
-                        variant="outlined"
-                        value={variantB}
-                        onChange={e => setVarB(e.target.value)}
-                    />
-                    <TextField
-                        className="question__input"
-                        label="Variant  C"
-                        variant="outlined"
-                        value={variantC}
-                        onChange={e => setVarC(e.target.value)}
-                    />
-                    <TextField
-                        className="question__input"
-                        label="Variant  D"
-                        variant="outlined"
-                        value={variantD}
-                        onChange={e => setVarD(e.target.value)}
-                    />
-
-                    <TextField
-                        className="question__input"
-                        label="Time for question"
+                        label="Час на запитання"
                         variant="outlined"
                         value={time}
                         type="number"
                         onChange={e => setTime(+e.target.value)}
                     />
 
-                    <CustomSelect defaultValue={correctVariant} setCorrectAnswer={setCorrectAnswer}/>
+                    <QuestionVariant
+                        questionType={questionType}
+                        setQuestionType={setQuestionType}
+                    />
+
+                    {questionType === QUESTION_TYPE.QUIZ && <QuizType
+                        questionTypeParams={quizParams}
+                        setQuestionTypeParams={setQuizParams}
+                    />}
+
+                    {questionType === QUESTION_TYPE.TRUE_OR_FALSE && <TrueFalse
+                        questionTypeParams={trueFalseParams}
+                        setQuestionTypeParams={setTrueFalseParams}
+                    />}
+
+                    {questionType === QUESTION_TYPE.TYPE_ANSWER && <TypeAnswer
+                        questionTypeParams={typeAnswerParams}
+                        setQuestionTypeParams={setTypeAnswerParams}
+                    />}
+
+                    {questionType === QUESTION_TYPE.SLIDER && <Slider
+                        questionTypeParams={sliderParams}
+                        setQuestionTypeParams={setSliderParams}
+                    />}
+
+                    {questionType === QUESTION_TYPE.PUZZLE && <Puzzle
+                        questionTypeParams={puzzleParams}
+                        setQuestionTypeParams={setPuzzleParams}
+                    />}
+
+
 
                     <div className="question__action-button">
                         <Button variant="outlined" color="success" onClick={onSave}>
-                            Save
+                            Зберегти
                         </Button>
 
-                        <Confirmation buttonHandler={onDelete} variant="outlined"/>
+                        <Confirmation buttonHandler={deleteQuestion} variant="outlined"/>
 
                     </div>
                 </AccordionDetails>

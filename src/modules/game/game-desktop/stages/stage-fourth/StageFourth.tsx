@@ -1,8 +1,4 @@
 import React, {useEffect, useRef, useState} from 'react';
-import SquareIcon from "@mui/icons-material/CropSquare";
-import CircleIcon from "@mui/icons-material/PanoramaFishEye";
-import TriangleIcon from "@mui/icons-material/ChangeHistory";
-import StarIcon from "@mui/icons-material/StarBorderOutlined";
 
 import {QuestionType} from "../../../../../components/card/Card.tsx";
 import Countdown from "../../../utils/getScoreForWinner.ts";
@@ -11,6 +7,14 @@ import './index.scss';
 import {User} from "../../../types.ts";
 import {onValue, ref} from "firebase/database";
 import {db} from "../../../../../firebase/firebase.ts";
+import {QUESTION_TYPE} from "../../../../../constants.ts";
+import {
+    StageFourthPuzzleView,
+    StageFourthQuizView,
+    StageFourthSliderView,
+    StageFourthTrueFalseView,
+    StageFourthTypeAnswerView
+} from "./views";
 
 type Props = {
     changeStage: () => void,
@@ -25,7 +29,7 @@ const StageFourth = ({changeStage, currentQuestion}: Props) => {
             const count = new Countdown(timerRef.current, currentQuestion.time, () => {
                 changeStage();
             });
-            count.start();
+           count.start();
         }
 
         const playersRef = ref(db, `/game/players`);
@@ -54,6 +58,7 @@ const StageFourth = ({changeStage, currentQuestion}: Props) => {
             <div className="stage-fourth__body">
                 <div className="stage-fourth__timer">
                     <span ref={timerRef}>{currentQuestion?.time}</span>
+                    <div>Час</div>
                 </div>
 
                 <div className="stage-fourth__img">
@@ -61,33 +66,21 @@ const StageFourth = ({changeStage, currentQuestion}: Props) => {
                 </div>
 
                 <div className="stage-fourth__number-of-question">
-                    {answered}
+                    <div className="stage-fourth__number-of-question-count">
+                        {answered}
+                    </div>
                     <div>
-                        Answers
+                        Відповіло
                     </div>
                 </div>
             </div>
 
             <div className="stage-fourth__footer">
-                {currentQuestion?.variantA && <div className="first-button">
-                    <SquareIcon className="icon"/>
-                    {currentQuestion?.variantA}
-                </div>}
-
-                {currentQuestion?.variantB && <div className="second-button">
-                    <CircleIcon className="icon"/>
-                    {currentQuestion?.variantB}
-                </div>}
-
-                {currentQuestion?.variantC && <div className="third-button">
-                    <TriangleIcon className="icon"/>
-                    {currentQuestion?.variantC}
-                </div>}
-
-                {currentQuestion?.variantD && <div className="fourth-button">
-                    <StarIcon className="icon"/>
-                    {currentQuestion?.variantD}
-                </div>}
+                {currentQuestion?.questionType === QUESTION_TYPE.QUIZ && <StageFourthQuizView currentQuestion={currentQuestion.QUIZ}/>}
+                {currentQuestion?.questionType === QUESTION_TYPE.TRUE_OR_FALSE && <StageFourthTrueFalseView/>}
+                {currentQuestion?.questionType === QUESTION_TYPE.TYPE_ANSWER && <StageFourthTypeAnswerView/>}
+                {currentQuestion?.questionType === QUESTION_TYPE.SLIDER && <StageFourthSliderView currentQuestion={currentQuestion.SLIDER}/>}
+                {currentQuestion?.questionType === QUESTION_TYPE.PUZZLE && <StageFourthPuzzleView/>}
             </div>
         </div>
     );

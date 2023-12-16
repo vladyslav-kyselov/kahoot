@@ -1,0 +1,24 @@
+.question-type-select {
+  .question-type-select__select {
+    #demo-select-small {
+      display: flex;
+      align-items: flex-end;
+      padding-top: 12px;
+
+    }
+  }
+
+  .question-type-select__img {
+    width: auto;
+    height: 30px;
+  }
+}
+
+
+.question-type-select__img {
+  margin-right: 20px;
+}
+
+.puzzle {
+  transform: rotate(-10deg);
+}

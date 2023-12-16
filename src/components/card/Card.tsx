@@ -4,12 +4,19 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import {Button, CardActionArea, TextField} from '@mui/material';
 import {useNavigate} from "react-router-dom";
-import {CorrectAnswers} from "../select/Select.tsx";
+import {
+    PuzzleType,
+    QuizTypes,
+    SliderTypes,
+    TrueOrFalseTypes,
+    TypeAnswerTypes
+} from "../../types.ts";
 
 import './index.scss';
 import {ref, set} from "firebase/database";
 import {db} from "../../firebase/firebase.ts";
 import Confirmation from "../confirmation/Confirmation.tsx";
+import {QUESTION_TYPE} from "../../constants.ts";
 
 type Props = {
     id: number,
@@ -23,13 +30,14 @@ export type QuestionType = {
     isNew?: boolean,
     title: string,
     time: number,
-    img: string,
-    variantA: string,
-    variantB: string,
-    variantC: string,
-    variantD: string,
-    correctVariant: CorrectAnswers
-};
+    img?: string,
+    questionType?: QUESTION_TYPE,
+    QUIZ?: QuizTypes,
+    TRUE_OR_FALSE?: TrueOrFalseTypes,
+    TYPE_ANSWER?: TypeAnswerTypes,
+    SLIDER?: SliderTypes,
+    PUZZLE?: PuzzleType[]
+}
 export default function QuizCard(props: Props) {
     const {title, id, questions, deleteQuiz} = props;
     const [newTitle, setNewTitle] = useState(title);
@@ -85,14 +93,14 @@ export default function QuizCard(props: Props) {
                 <div className="card__action-buttons">
                     {editMode ? (<>
                         <Button color="success" onClick={onSave}>
-                            Save
+                            Зберегти
                         </Button>
                         <Button color="primary" onClick={() => setEditMode(false)}>
-                            Cancel
+                            Відмінити
                         </Button>
                     </>) : (<>
                         <Button color="primary" onClick={onEdit}>
-                            Edit
+                            Редагувати
                         </Button>
                         <Confirmation buttonHandler={onDelete} />
 

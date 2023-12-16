@@ -55,7 +55,7 @@ const StageSeventh = () => {
             <Zoom in={true} timeout={500}>
                 <div className="seventh-stage__score-wrapper">
                     <Typography variant="h3" gutterBottom className="seventh-stage__score">
-                        Your place: {showStatistic ? place: '...'}
+                        Місце: {showStatistic ? place: '...'}
                         <div className="score__wrapper">{score}</div>
 
                         <div className="image__wrapper">

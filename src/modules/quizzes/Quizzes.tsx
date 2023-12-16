@@ -57,10 +57,10 @@ const Quizzes = () => {
     return (
         <div className="quizzes">
             <div className="quizzes__create-new">
-                <CustomModal refButtonText="Create new Quiz" buttonHandler={createNewQuiz}/>
+                <CustomModal buttonHandler={createNewQuiz}/>
                 <Button variant="contained" color="error" onClick={finishGame} className="rating__come-back-button"
                         disabled={!startedGame}>
-                    END GAME
+                    Завершити гру
                 </Button>
             </div>
 

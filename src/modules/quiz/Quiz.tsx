@@ -21,6 +21,8 @@ const Quiz = () => {
             const question = snapshot.val();
             if (question) {
                 setQuestions(question.filter((i: QuestionType) => i));
+            } else {
+                setQuestions([]);
             }
         });
     }, []);
@@ -47,26 +49,27 @@ const Quiz = () => {
         navigate('/game');
     };
 
+    const onDelete = (id: number) => {
+        setQuestions(prevState => prevState.filter((question) => question.id !== id));
+        const refQuestions = ref(db, '/quizzes/' + location?.state?.quizId + '/questions/' + id);
+        set(refQuestions, null);
+    };
+
     return (
         <div className="quizzes">
             <div className="quizzes__create-new">
-                <Button variant="contained" onClick={onAddNewQuestion}>Add new question</Button>
-                <Button variant="contained" color="success" onClick={onStartGame}>Create Game</Button>
+                <Button variant="contained" onClick={onAddNewQuestion}>Додати нове запитання</Button>
+                <Button variant="contained" color="success" onClick={onStartGame}>Почати гру</Button>
             </div>
             <div className="quizzes__wrapper">
                 {questions.map((question) => (
                     <Question
-                        id={question.id}
-                        time={question.time}
                         key={question.id}
                         img={question.img}
-                        title={question.title}
                         isNew={question.isNew}
-                        variantA={question.variantA}
-                        variantB={question.variantB}
-                        variantC={question.variantC}
-                        variantD={question.variantD}
-                        correctVariant={question.correctVariant}
+                        questionType={question.questionType}
+                        onDelete={onDelete}
+                        {...question}
                     />
                 ))}
             </div>
