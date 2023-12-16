@@ -29,7 +29,7 @@ const StageFourth = ({changeStage, currentQuestion}: Props) => {
             const count = new Countdown(timerRef.current, currentQuestion.time, () => {
                 changeStage();
             });
-           // count.start();
+           count.start();
         }
 
         const playersRef = ref(db, `/game/players`);

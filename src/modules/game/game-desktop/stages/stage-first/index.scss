@@ -81,13 +81,13 @@
 
   .game__player {
     width: fit-content;
-    margin: 15px;
-    padding: 20px;
-    font-size: 35px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
     background-color: white;
     overflow: hidden;
     text-overflow: ellipsis;
-
+    max-width: 250px;
   }
 
   .game__info-wrapper {

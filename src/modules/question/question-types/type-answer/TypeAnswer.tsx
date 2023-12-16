@@ -29,7 +29,7 @@ const TypeAnswer = (props: Props) => {
         <TextField
             size="small"
             className="question__input"
-            label="Correct Answer*"
+            label="Правильна відповідь*"
             variant="outlined"
             value={questionTypeParams?.correctVariant || ''}
             onChange={e => setValue('correctVariant', e.target.value)}

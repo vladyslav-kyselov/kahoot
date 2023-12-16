@@ -22,10 +22,10 @@ export const StageFifthPuzzleView = ({currentQuestion, lastQuestion, onClickNext
 
             <div className="stage-fourth__img stage-fifth__puzzle">
                 {
-                    currentQuestion?.PUZZLE ? Object.values(currentQuestion?.PUZZLE).map((title, index) => (
+                    currentQuestion?.PUZZLE ? Object.values(currentQuestion?.PUZZLE).map(({value}, index) => (
                         <Zoom in={true} timeout={2000 * (index + 1)}>
                             <Paper elevation={3} className="stage-fifth__puzzle-element">
-                                {title}
+                                {value}
                             </Paper>
                         </Zoom>
                     )) : null

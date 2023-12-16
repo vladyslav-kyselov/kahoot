@@ -9,10 +9,12 @@ import {db} from "../../../../../firebase/firebase.ts";
 import {QuestionType} from "../../../../../components/card/Card.tsx";
 
 import './index.scss';
+import {getCondition} from "./utils";
+import {PuzzleType} from "../../../../../types";
 
-type Answer = {
+export type Answer = {
     questionId: number,
-    answer: string
+    answer: string | PuzzleType[]
 };
 
 type Props = {
@@ -55,7 +57,8 @@ const StageFifth = ({currentQuestion}: Props) => {
     }, []);
 
 
-    const condition = lastAnswer?.questionId === currentQuestion?.id && lastAnswer?.answer === currentQuestion?.correctVariant;
+    const condition = lastAnswer && getCondition(lastAnswer, currentQuestion);
+
     return (
         <div className="stage-fifth">
             {condition ? (
@@ -63,14 +66,14 @@ const StageFifth = ({currentQuestion}: Props) => {
                     <Zoom in={true} timeout={500}>
                         <div className="correct-answer__wrapper">
                             <Typography variant="h3" gutterBottom className="correct-answer__title">
-                                Correct!
+                                Вірно!
                                 <br/>
                                 (+ {lastScore})
                             </Typography>
                             <CheckIcon className="correct-answer__icon" />
 
                             <Typography variant="h3" gutterBottom className="correct-answer__streak">
-                                Answer streak <span>{streak}</span>
+                                Послідовність перемог <span>{streak}</span>
                             </Typography>
                         </div>
 

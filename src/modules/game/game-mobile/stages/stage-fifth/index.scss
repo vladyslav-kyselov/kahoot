@@ -81,11 +81,15 @@
     font-family: 'Dela Gothic One', cursive;
     font-size: 30px;
     display: flex;
+    flex-direction: column;
+    width: min-content;
     justify-content: center;
     align-items: center;
+    text-align: center;
 
     span {
-      margin-left: 25px;
+      display: inline-block;
+      margin-top: 15px;
       border-radius: 50%;
       background-color: red;
       padding: 5px 15px;

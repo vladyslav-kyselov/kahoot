@@ -50,8 +50,10 @@ export default function Confirmation(props: Props) {
                     Ви впевнені, що хочете видалити?
                 </Typography>
                 <DialogActions className="action-buttons">
-                    <Button color="error" onClick={onDelete}>Видалити</Button>
-                    <Button onClick={handleClose}>
+                    <Button color="error" onClick={onDelete} variant="outlined">
+                        Видалити
+                    </Button>
+                    <Button onClick={handleClose} variant="outlined">
                         Відмінити
                     </Button>
                 </DialogActions>

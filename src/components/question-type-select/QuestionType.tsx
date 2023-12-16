@@ -20,13 +20,13 @@ export default function QuestionVariant(props: Props) {
 
     return (
         <FormControl fullWidth size="small" className="question-type-select">
-            <InputLabel id="demo-select-small-label">Question Type</InputLabel>
+            <InputLabel id="demo-select-small-label">Тип запитання</InputLabel>
             <Select
                 className="question-type-select__select"
                 labelId="demo-select-small-label"
                 id="demo-select-small"
                 value={questionType || ''}
-                label="Question Type"
+                label="Тип запитання"
                 onChange={handleChange}
             >
                 <MenuItem value={QUESTION_TYPE.QUIZ} className="question-type-select__item">

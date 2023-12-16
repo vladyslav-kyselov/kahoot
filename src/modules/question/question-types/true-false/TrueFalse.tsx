@@ -36,8 +36,8 @@ const TrueFalse = (props: Props) => {
                 name="radio-buttons-group"
                 onChange={e => setValue('correctVariant', e.target.value)}
             >
-                <FormControlLabel value='A' control={<Radio/>} label="True"/>
-                <FormControlLabel value='B' control={<Radio/>} label="False"/>
+                <FormControlLabel value='A' control={<Radio/>} label="Правда"/>
+                <FormControlLabel value='B' control={<Radio/>} label="Не правда"/>
             </RadioGroup>
         </>
     );

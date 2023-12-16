@@ -11,6 +11,12 @@
   align-items: stretch;
   font-size: 20px;
 
+  .fourth-stage__circular-progress {
+    color: white;
+
+
+  }
+
   .fourth-stage__wrapper {
     display: flex;
     flex-direction: column;
@@ -22,7 +28,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 
+    flex-direction: column;
   }
 
   .fourth-stage__font {

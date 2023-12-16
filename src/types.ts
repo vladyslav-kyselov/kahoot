@@ -21,12 +21,12 @@ export type SliderTypes = {
     max?: number,
     correctVariant?: number
 };
-export type PuzzleTypes = {
-    variantA?: string,
-    variantB?: string,
-    variantC?: string,
-    variantD?: string,
+
+export type PuzzleType = {
+    id: number,
+    value: string
 };
+export type PuzzleTypes = { [key: string]: PuzzleType };
 
 export type AllQuestionVariantsType = QuizTypes | TrueOrFalseTypes | TypeAnswerTypes | SliderTypes | PuzzleTypes;
 

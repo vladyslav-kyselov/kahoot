@@ -36,7 +36,7 @@ const Quiz = (props: Props) => {
             <TextField
                 size="small"
                 className="question__input"
-                label="Variant  A*"
+                label="Варіант  A*"
                 variant="outlined"
                 value={questionTypeParams?.variantA || ''}
                 onChange={e => setValue('variantA', e.target.value)}
@@ -44,7 +44,7 @@ const Quiz = (props: Props) => {
             <TextField
                 size="small"
                 className="question__input"
-                label="Variant  B*"
+                label="Варіант Б*"
                 variant="outlined"
                 value={questionTypeParams?.variantB || ''}
                 onChange={e => setValue('variantB', e.target.value)}
@@ -52,7 +52,7 @@ const Quiz = (props: Props) => {
             <TextField
                 size="small"
                 className="question__input"
-                label="Variant  C"
+                label="Варіант В*"
                 variant="outlined"
                 value={questionTypeParams?.variantC || ''}
                 onChange={e => setValue('variantC', e.target.value)}
@@ -60,13 +60,13 @@ const Quiz = (props: Props) => {
             <TextField
                 size="small"
                 className="question__input"
-                label="Variant  D"
+                label="Варіант Г*"
                 variant="outlined"
                 value={questionTypeParams?.variantD || ''}
                 onChange={e => setValue('variantD', e.target.value)}
             />
 
-            <CustomSelect defaultValue={questionTypeParams?.correctVariant} setCorrectAnswer={setValue} type={QUESTION_TYPE.QUIZ}/>
+            <CustomSelect defaultValue={questionTypeParams?.correctVariant} setCorrectAnswer={setValue}/>
         </div>
     );
 };

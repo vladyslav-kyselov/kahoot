@@ -28,14 +28,18 @@ const Slider = (props: Props) => {
         })
     };
 
+    const questionMin = +(questionTypeParams?.min || 0);
+    const questionMax = +(questionTypeParams?.max || 100);
+    const min = questionMin > questionMax ? questionMax : questionMin;
+    const max = questionMax < questionMin ? questionMin : questionMax;
     return (
         <>
             <TextField
                 size="small"
                 className="question__input"
-                label="Start value"
+                label="Початкове значення"
                 variant="outlined"
-                value={questionTypeParams?.min || 0}
+                value={questionMin}
                 type="number"
                 onChange={e => setValue('min', +e.target.value)}
             />
@@ -43,16 +47,16 @@ const Slider = (props: Props) => {
             <TextField
                 size="small"
                 className="question__input"
-                label="End value"
+                label="Кінцеве значення"
                 variant="outlined"
-                value={questionTypeParams?.max || 100}
+                value={questionMax}
                 type="number"
                 onChange={e => setValue('max', +e.target.value)}
             />
             <TextField
                 size="small"
                 className="question__input"
-                label="Answer"
+                label="Правильна відповідь"
                 variant="outlined"
                 value={questionTypeParams?.correctVariant || 0}
                 type="number"
@@ -60,14 +64,13 @@ const Slider = (props: Props) => {
             />
 
             <SliderMaterial
-                aria-label="Temperature"
                 valueLabelDisplay="on"
                 step={1}
                 defaultValue={+(questionTypeParams?.correctVariant || 0)}
                 value={+(questionTypeParams?.correctVariant || 0)}
                 marks
-                min={+(questionTypeParams?.min || 0)}
-                max={+(questionTypeParams?.max || 100)}
+                min={min}
+                max={max}
                 onChange={(_, newValue) => setValue('correctVariant', newValue as number)}
             />
 

@@ -15,13 +15,7 @@ import {TrueFalse} from "./question-types/true-false";
 import {TypeAnswer} from "./question-types/type-answer";
 import {Slider} from "./question-types/slider";
 import {Puzzle} from "./question-types/puzzle";
-import {
-    PuzzleTypes,
-    QuizTypes,
-    SliderTypes,
-    TrueOrFalseTypes,
-    TypeAnswerTypes
-} from "../../types.ts";
+import {PuzzleType, QuizTypes, SliderTypes, TrueOrFalseTypes, TypeAnswerTypes} from "../../types.ts";
 
 import './index.scss';
 
@@ -39,7 +33,7 @@ const Question = (props: Props) => {
     const [trueFalseParams, setTrueFalseParams] = useState<TrueOrFalseTypes | null>(null);
     const [typeAnswerParams, setTypeAnswerParams] = useState<TypeAnswerTypes | null>(null);
     const [sliderParams, setSliderParams] = useState<SliderTypes | null>(null);
-    const [puzzleParams, setPuzzleParams] = useState<PuzzleTypes | null>(null);
+    const [puzzleParams, setPuzzleParams] = useState<PuzzleType[]>([]);
 
     const [title, setTitle] = useState('');
     const [time, setTime] = useState<number>(10);
@@ -56,7 +50,10 @@ const Question = (props: Props) => {
         setTrueFalseParams(props[QUESTION_TYPE.TRUE_OR_FALSE] || null);
         setTypeAnswerParams(props[QUESTION_TYPE.TYPE_ANSWER] || null);
         setSliderParams(props[QUESTION_TYPE.SLIDER] || null);
-        setPuzzleParams(props[QUESTION_TYPE.PUZZLE] || null);
+        if (props[QUESTION_TYPE.PUZZLE]) {
+            const puzzle = Object.values(props[QUESTION_TYPE.PUZZLE]) || [];
+            setPuzzleParams(puzzle);
+        }
     }, []);
 
 
@@ -98,12 +95,13 @@ const Question = (props: Props) => {
                     id="panel1a-header"
                     onClick={() => setExpanded(!expanded)}
                 >
-                    <Typography>{props.isNew && !title ? 'New Question' : title}</Typography>
+                    <Typography>{props.isNew && !title ? 'Нове запитання' : title}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <TextField
                         size="small"
-                        className="question__input" label="Title*"
+                        className="question__input"
+                        label="Запитання"
                         variant="outlined"
                         value={title}
                         onChange={e => setTitle(e.target.value)}
@@ -112,7 +110,7 @@ const Question = (props: Props) => {
                     <TextField
                         size="small"
                         className="question__input"
-                        label="Image Link"
+                        label="Посилання на JPG/GIF"
                         variant="outlined"
                         value={img}
                         onChange={e => setUrl(e.target.value)}
@@ -121,7 +119,7 @@ const Question = (props: Props) => {
                     <TextField
                         size="small"
                         className="question__input"
-                        label="Time for question"
+                        label="Час на запитання"
                         variant="outlined"
                         value={time}
                         type="number"

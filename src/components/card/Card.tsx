@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import {Button, CardActionArea, TextField} from '@mui/material';
 import {useNavigate} from "react-router-dom";
 import {
-    PuzzleTypes,
+    PuzzleType,
     QuizTypes,
     SliderTypes,
     TrueOrFalseTypes,
@@ -36,7 +36,7 @@ export type QuestionType = {
     TRUE_OR_FALSE?: TrueOrFalseTypes,
     TYPE_ANSWER?: TypeAnswerTypes,
     SLIDER?: SliderTypes,
-    PUZZLE?: PuzzleTypes
+    PUZZLE?: PuzzleType[]
 }
 export default function QuizCard(props: Props) {
     const {title, id, questions, deleteQuiz} = props;

@@ -131,4 +131,12 @@
       background-color: black;
     }
   }
+
+  .name {
+    text-overflow: ellipsis;
+    max-width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
 }
